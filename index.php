@@ -2,6 +2,8 @@
   include 'db.php';
   include 'redis.php';
   
+  $model = array('posts' => array());
+  
   // load posts from database
   $result = mysql_query("SELECT * FROM posts", $mysql);
   while ($row = mysql_fetch_array($result)) {
@@ -14,7 +16,7 @@
 ?>
 <html>
   <body>
-    <h1>It works!</h1>
+    <h1>Posts!</h1>
     <ul>
     <?php foreach ($post in $model['posts']) { ?>
       <li>
