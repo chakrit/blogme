@@ -12,6 +12,7 @@
     exit(0);
   }
   
+  $redis->hIncrBy($key, 'view_count');
   $post = $redis->hGetAll($key);
   
 ?>
