@@ -7,7 +7,7 @@
   $key = "posts:" . $post_id;
   
   // only loads from the cache, redirect user to the index so the cache gets primed on first hit
-  if (!$redis-exists()) {
+  if (!$redis-exists($key)) {
     header('Location', 'http://127.0.0.1/index.php');
     exit(0);
   }
