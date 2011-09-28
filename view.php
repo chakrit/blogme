@@ -1,18 +1,22 @@
 <?php
-  include 'include/redis.php';
-    
+  include 'include/db.php';
+  
   // validate params
   is_numeric($post_id = $_GET['post_id']) or die("post_id must be a number.");
   
-  $key = "posts:" . $post_id;
+  // update view count
+  $query = "UPDATE posts SET view_count = (view_count + 1) WHERE post_id = $post_id";
+  mysql_query($query, $mysql) or die("Error incrementing view count: " . mysql_error($mysql));
   
-  // only loads from the cache, redirect user to the index so the cache gets primed on first hit
-  if (!$redis-exists()) {
-    header('Location', 'http://127.0.0.1/index.php');
-    exit(0);
-  }
+  // fetch display data
+  $query = "SELECT * FROM posts WHERE post_id = $post_id";
+  $result = mysql_query($query, $mysql) or die("Error fetching post $post_id: " . mysql_error($mysql));
+  $result = mysql_fetch_array($result);
   
-  $post = $redis->hGetAll($key);
+  $post = array(
+    'post_id' => $result['post_id'],
+    'content' => htmlentities($result['content']),
+    'view_count' => $result['view_count']);
   
 ?>
 <html>
