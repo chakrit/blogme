@@ -1,6 +1,5 @@
 <?php
   include 'include/db.php';
-  include 'include/redis.php';
   
   // validate params
   is_numeric($post_id = $_GET['post_id']) or die("post_id must be a number.");
