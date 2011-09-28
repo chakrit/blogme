@@ -24,14 +24,11 @@
     $multi = $redis->multi();
     foreach ($posts as $post) {
       $key = "posts:" . $post['post_id'];
-      $multi = $multi
-        ->hMset($key, $post)
+      $multi = $multi->hMset($key, $post)
         ->rpush("posts:list", $key);
     }
     
-    $multi = $multi
-      ->expire("posts:list", 1800) // list is cached for half hour
-      ->del("posts:list:lock") // unlocks
+    $multi = $multi->del("posts:list:lock") // unlocks
       ->exec();
   }
   
