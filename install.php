@@ -1,5 +1,5 @@
 <?
-  include 'db.php';
+  include 'include/db.php';
 
   header('Content-Type', 'text/plain');
 

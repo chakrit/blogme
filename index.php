@@ -1,6 +1,5 @@
 <?php
-  include 'db.php';
-  include 'redis.php';
+  include 'include/db.php';
   
   $counter = 0;
   $posts = array();
