@@ -11,10 +11,10 @@
         `post_id` BIGINT NOT NULL AUTO_INCREMENT,
         `content` TEXT NOT NULL,
         `view_count` INT NOT NULL,
-        PRIMARY KEY (`blog_id`)
+        PRIMARY KEY (`post_id`)
       ) ENGINE = MYISAM;';
   
-    mysql_query($query, $mysql) or die("Could not create table `posts`.");
+    mysql_query($query, $mysql) or die("Could not create table `posts`: " . mysql_error($mysql));
   }
   
   function insert_data($content) {
