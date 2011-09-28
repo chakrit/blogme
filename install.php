@@ -36,5 +36,7 @@
   insert_data("the lazy brown dog jumps over the quick fox.");
   insert_data("the quick fox jumps over the lazy brown dog.");
   insert_data("the lazy fox jumps over the quick brown fox.");
+
+  mysql_close($mysql);
   
 ?>
