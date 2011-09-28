@@ -3,11 +3,10 @@
   include 'redis.php';
   
   $counter = 0;
-
   $posts = array();
   
   // load posts from database
-  $result = mysql_query("SELECT * FROM posts", $mysql);
+  $result = mysql_query("SELECT * FROM posts", $mysql) or die("Error while fetching posts list: " . mysql_error($mysql));
   while ($row = mysql_fetch_array($result)) {
     $posts[$counter++] = array(
       'post_id' => $row['post_id'],
