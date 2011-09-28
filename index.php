@@ -12,6 +12,8 @@
       'content' => $row['content'],
       'view_count' => $row['view_count']);
   }
+
+  mysql_close($mysql);
   
 ?>
 <html>

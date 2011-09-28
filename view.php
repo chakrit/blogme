@@ -18,6 +18,8 @@
     'content' => htmlentities($result['content']),
     'view_count' => $result['view_count']);
   
+  mysql_close($mysql); 
+ 
 ?>
 <html>
   <body>
