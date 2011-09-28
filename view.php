@@ -6,11 +6,11 @@
   is_numeric($post_id = $_GET['post_id']) or die("post_id must be a number.");
   
   // update view count
-  $query = "UPDATE posts SET view_count = (view_count + 1) WHERE post_id = $post_id";
+  $query = 'UPDATE posts SET view_count = (view_count + 1) WHERE post_id = $post_id';
   mysql_query($query, $mysql) or die("Error incrementing view count: " . mysql_error($mysql));
   
   // fetch display data
-  $query = 'SELECT * FROM posts WHERE post_id=$post_id';
+  $query = 'SELECT * FROM posts WHERE post_id = $post_id';
   $result = mysql_query($query, $mysql) or die('Error fetching post $post_id' . mysql_error($mysql));
   $result = mysql_fetch_array($result);
   
