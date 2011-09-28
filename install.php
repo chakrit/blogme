@@ -10,6 +10,6 @@
   ) ENGINE = MYISAM ;
   ';
   
-  mysql_query($query) or die("Could not create table `posts`.");
+  mysql_query($query, $mysql) or die("Could not create table `posts`.");
   
 ?>
