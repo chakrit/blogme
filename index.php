@@ -17,6 +17,8 @@
         'content' => $row['content'],
         'view_count' => $row['view_count']);
     }
+
+    mysql_close($mysql);
    
     if (!$redis->setnx("posts:list:lock", "lock"))
       return; // only one thread should prime the cache
@@ -51,6 +53,8 @@
   } else {
     load_from_db();
   }
+  
+  $redis->close();
 
 ?>
 <html>

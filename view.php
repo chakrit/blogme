@@ -14,6 +14,8 @@
   
   $redis->hIncrBy($key, 'view_count', 1);
   $post = $redis->hGetAll($key);
+
+  $redis->close();
   
 ?>
 <html>
