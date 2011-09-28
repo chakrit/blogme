@@ -10,7 +10,7 @@
   $result = mysql_query("SELECT * FROM posts", $mysql);
   while ($row = mysql_fetch_array($result)) {
     $posts[$counter++] = array(
-      'blog_id' => $row['blog_id'],
+      'post_id' => $row['post_id'],
       'content' => $row['content'],
       'view_count' => $row['view_count']);
   }
@@ -22,7 +22,7 @@
     <ul>
       <?php foreach ($posts as $post) { ?>
       <li>
-        <a href="view.php?blog_id=<?= $post['blog_id'] ?>">
+        <a href="view.php?post_id=<?= $post['post_id'] ?>">
           <?= $post['content'] ?></a>
         (<?= $post['view_count'] ?> views)
       </li>
