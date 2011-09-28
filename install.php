@@ -8,7 +8,7 @@
 
     $query = '
       CREATE TABLE `blogme`.`posts` (
-        `blog_id` BIGINT NOT NULL AUTO_INCREMENT,
+        `post_id` BIGINT NOT NULL AUTO_INCREMENT,
         `content` TEXT NOT NULL,
         `view_count` INT NOT NULL,
         PRIMARY KEY (`blog_id`)
