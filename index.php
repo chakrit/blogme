@@ -1,23 +1,24 @@
 <?php
   include 'include/redis.php';
   
-  $counter = 0;
   $posts = array();
   
   function load_from_db() {
-    global $redis;
-
     include 'include/db.php';
-    
-    $result = mysql_query("SELECT * FROM posts", $mysql) or die("Error while fetching posts list: " . mysql_error($mysql));
+    global $redis,$posts;
+
+    $counter = 0;   
+ 
+    $query = "SELECT * FROM posts";
+    $result = mysql_query($query, $mysql) or die("Error while fetching posts list: " . mysql_error($mysql));
     while ($row = mysql_fetch_array($result)) {
       $posts[$counter++] = array(
         'post_id' => $row['post_id'],
         'content' => $row['content'],
         'view_count' => $row['view_count']);
     }
-    
-    if (!$redis->setnx("posts:list:lock"))
+   
+    if (!$redis->setnx("posts:list:lock", "lock"))
       return; // only one thread should prime the cache
     
     // prime the cache transactionally
@@ -33,7 +34,7 @@
   }
   
   function load_from_redis() {
-    global $redis;
+    global $redis,$posts;
     
     $keys = $redis->lrange("posts:list", 0, -1);
     $multi = $redis->multi();
@@ -50,7 +51,7 @@
   } else {
     load_from_db();
   }
-  
+
 ?>
 <html>
   <body>
